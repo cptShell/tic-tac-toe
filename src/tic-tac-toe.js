@@ -22,7 +22,7 @@ class TicTacToe {
   }
 
   getCurrentPlayerSymbol() {
-    return this.currentPlayer;
+    return this.currentPlayer === 'x' ? 'o' : 'x';
   }
 
   nextTurn(rowIndex, columnIndex) {
