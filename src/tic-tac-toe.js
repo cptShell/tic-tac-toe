@@ -61,7 +61,7 @@ class TicTacToe {
   }
 
   isDraw() {
-    return 1;
+    return this.fullField === true && this.winner === null;
   }
 
   getFieldValue(rowIndex, colIndex) {
