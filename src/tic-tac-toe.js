@@ -17,6 +17,8 @@ class TicTacToe {
       [ 2, 4, 6 ]
     ];
     this.finished = false;
+    this.fullField = false;
+    this.winner = null;
   }
 
   getCurrentPlayerSymbol() {
@@ -29,8 +31,20 @@ class TicTacToe {
     if(!currentSquare) {
       this.state[rowIndex][columnIndex] = this.currentPlayer;
       this.currentPlayer = this.currentPlayer == 'x' ? 'o' : 'x';
-    } else {
-      console.log('wrong');
+    } 
+
+    this.fullField = this.state.flat().every(square => square !== null);
+
+    let allSquares = this.state.flat();
+    let lastTurnPlayer = this.currentPlayer == 'x' ? 'o' : 'x';
+    for (let i = 0; i < this.winConditions.length; i++) {
+      const a = allSquares[this.winConditions[i][0]];
+      const b = allSquares[this.winConditions[i][1]];
+      const c = allSquares[this.winConditions[i][2]];
+
+      if (a === lastTurnPlayer && a === b && b === c) {
+        this.winner = lastTurnPlayer;
+      }
     }
   }
 
@@ -39,36 +53,15 @@ class TicTacToe {
   }
 
   getWinner() {
-    console.log('new');
-    const allSquares = this.state.flat();
-    const lastTurnPlayer = this.currentPlayer == 'x' ? 'o' : 'x';
-    for (let i = 0; i < this.winConditions.length; i++) {
-      const a = allSquares[this.winConditions[i][0]];
-      const b = allSquares[this.winConditions[i][1]];
-      const c = allSquares[this.winConditions[i][2]];
-      console.log(a,b,c);
-      if (a === lastTurnPlayer && a === b && b === c) {
-        return lastTurnPlayer;
-      }
-    }
-    return null;
+    return this.winner;
   }
 
   noMoreTurns() {
-    const fullField = this.state.flat().every(square => square !== null);
-    console.log(fullField);
-    if(fullField) {
-      this.finished = !this.finished;
-      return true;
-    }
+    return this.fullField;
   }
 
   isDraw() {
-    if(this.noMoreTurns()) {
-      console.log('no turns');
-      this.finished = !this.finished;
-      return true;
-    }
+    return this.fullField === true && this.winner === null;
   }
 
   getFieldValue(rowIndex, colIndex) {
