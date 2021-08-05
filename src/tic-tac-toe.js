@@ -20,7 +20,7 @@ class TicTacToe {
   }
 
   getCurrentPlayerSymbol() {
-    return this.currentPlayer = this.currentPlayer == 'x' ? 'o' : 'x';
+    return this.currentPlayer;
   }
 
   nextTurn(rowIndex, columnIndex) {
@@ -28,7 +28,7 @@ class TicTacToe {
 
     if(!currentSquare) {
       this.state[rowIndex][columnIndex] = this.currentPlayer;
-      this.getCurrentPlayerSymbol();
+      this.currentPlayer = this.currentPlayer == 'x' ? 'o' : 'x';
     } else {
       console.log('wrong');
     }
