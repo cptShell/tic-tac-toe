@@ -57,7 +57,7 @@ class TicTacToe {
   }
 
   noMoreTurns() {
-    return 1;
+    return this.fullField;
   }
 
   isDraw() {
