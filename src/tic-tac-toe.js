@@ -5,7 +5,6 @@ class TicTacToe {
       [null,null,null],
       [null,null,null]
     ]
-    this.currentPlayer = 'x';
     this.winConditions = [
       [ 0, 1, 2 ],
       [ 3, 4, 5 ],
@@ -16,13 +15,14 @@ class TicTacToe {
       [ 0, 4, 8 ],
       [ 2, 4, 6 ]
     ];
+    this.currentPlayer = 'x';
     this.finished = false;
     this.fullField = false;
     this.winner = null;
   }
 
   getCurrentPlayerSymbol() {
-    return this.currentPlayer;
+    return 1;
   }
 
   nextTurn(rowIndex, columnIndex) {
